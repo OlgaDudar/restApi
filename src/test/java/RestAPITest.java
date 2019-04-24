@@ -39,12 +39,13 @@ public class RestAPITest {
 
    /* @Test (dataProvider = "getData")
     public void getRequestFindCapitalModel(String name, String capital) throws JSONException {
-
+        Response resp = get("http://restcountries.eu/rest/v2/name/"+name);
         //make get request to fetch capital of country
-        mResponse resp = (mResponse) get("http://restcountries.eu/rest/v2/name/"+name);
+        mResponse mresp = new mResponse();
+
 
         //Fetching value of capital parameter
-        String respCapital = resp.getCapital();//.getJSONObject(0).getString("capital");
+        String respCapital = mresp.getCapital();//.getJSONObject(0).getString("capital");
 
         //Asserting that capital of country is right
         Assert.assertEquals(respCapital, capital);

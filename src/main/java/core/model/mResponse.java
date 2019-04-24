@@ -1,8 +1,9 @@
 package core.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class mResponse {
+public class mResponse implements Serializable{
     /**
      * area : 323802.0
      * nativeName : Norge
