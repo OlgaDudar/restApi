@@ -3,7 +3,7 @@ package core.model;
 import java.io.Serializable;
 import java.util.List;
 
-public class mResponse implements Serializable{
+public class ResponseModel implements Serializable{
     /**
      * area : 323802.0
      * nativeName : Norge
@@ -482,7 +482,7 @@ public class mResponse implements Serializable{
     private String _flag;
     private String _numericCode;
     private String _currencies;
-    public mResponse (String name, String capital, String flag, String numericCode, String currencies){
+    public ResponseModel (String name, String capital, String flag, String numericCode, String currencies){
         _name = name;
         _capital = capital;
         _flag = flag;
