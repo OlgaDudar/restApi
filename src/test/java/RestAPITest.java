@@ -2,6 +2,7 @@
 import com.jayway.restassured.builder.RequestSpecBuilder;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
+import core.model.mResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +18,7 @@ public class RestAPITest {
     @DataProvider(name = "getData", parallel = true)
     public Object[][] getData()
     {
-        return new Object[][]{{"norway", "Oslo"}, {"france", "Paris"}, {"ukraine", "Kiev"}, {"poland", "Warsaw"}};
+        return new Object[][]{{"Norway", "Oslo"}, {"France", "Paris"}, {"Ukraine", "Kiev"}, {"Poland", "Warsaw"}};
     }
 
     @Test (dataProvider = "getData")
@@ -35,6 +36,19 @@ public class RestAPITest {
         //Asserting that capital of country is right
         Assert.assertEquals(respCapital, capital);
     }
+
+   /* @Test (dataProvider = "getData")
+    public void getRequestFindCapitalModel(String name, String capital) throws JSONException {
+
+        //make get request to fetch capital of country
+        mResponse resp = (mResponse) get("http://restcountries.eu/rest/v2/name/"+name);
+
+        //Fetching value of capital parameter
+        String respCapital = resp.getCapital();//.getJSONObject(0).getString("capital");
+
+        //Asserting that capital of country is right
+        Assert.assertEquals(respCapital, capital);
+    }*/
 
     @Test
     public void httpPost() throws JSONException,InterruptedException {
@@ -85,7 +99,7 @@ public class RestAPITest {
         RequestSpecification requestSpec = builder.build();
 
         //Making post request with authentication, leave blank in case there are no credentials- basic("","")
-        Response response = given().authentication().preemptive().basic("", "")
+        mResponse response = given().authentication().preemptive().basic("", "")
                 .spec(requestSpec).when().post(APIUrl);
 
         JSONObject JSONResponseBody = new JSONObject(response.body().asString());
